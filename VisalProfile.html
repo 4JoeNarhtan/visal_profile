@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Visalt</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 1.5px;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-size: 1.3rem;
+            color: black;
+            min-height: 100vh;
+            width: 100%;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(45deg, rgb(216, 216, 216), rgb(255, 0, 132), rgba(193, 0, 0, 0.735));
+            background-size: cover;
+        }
+
+        .profie-v {
+            background: linear-gradient(45deg, rgb(221, 221, 221), rgba(255, 98, 179, 0.248), rgba(241, 241, 241, 0.239));
+            padding: 1rem;
+            border-radius: 15px;
+            box-shadow: -5px 10px 12px 9px rgba(0, 0, 0, 0.519);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .profie img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .profie-v-desc h1 {
+            font-family: cursive;
+            margin-bottom: 0.9rem;
+        }
+
+        .position button {
+            font-family: Arial, Helvetica, sans-serif;
+            border: none;
+            padding: 0.5rem 1rem;
+            background: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .position button i {
+            font-size: 1.2rem;
+            margin-right: 0rem;
+            padding: 0rem 0.7rem 0rem;
+            margin-top: 0.6rem;
+        }
+
+        .profie-v-info {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1rem;
+        }
+
+        .profie-v-info div {
+            text-align: center;
+        }
+
+        .profie-v-social {
+            display: flex;
+            justify-content: center;
+            gap: 1.3rem;
+            margin-top: 1rem;
+        }
+
+        .profie-v-social a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: #ffffff;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .profie-v-social a.facebook {
+            background-color: #1877f2;
+        }
+
+        .profie-v-social a.whatsapp {
+            background-color: #25D366;
+        }
+
+        .profie-v-social a.telegram {
+            background-color: #0088cc;
+        }
+
+        .profie-v-social a.youtube {
+            background-color: #ff0000;
+        }
+
+        .profie-v-social a.twitter {
+            background-color: #1DA1F2;
+        }
+
+        .profie-v-social a:hover {
+            background-color: #ffe3e3;
+            color: #000000;
+        }
+
+        .profie-v-action {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .profie-v-action button {
+            padding: 0.5rem 1rem;
+            border: none;
+            color: rgb(255, 255, 255);
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        .profie-v-action .blue {
+            background: #f9b600;
+        }
+
+        .profie-v-action .orange {
+            background: #2900df;
+        }
+
+        .color-perent {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="profie-v">
+        <figure class="profie">
+            <img src="https://th.bing.com/th/id/OIP.atOtlpTfyUZ4HL_g1HEJtAAAAA?rs=1&pid=ImgDetMain"
+                alt="Profile Picture">
+        </figure>
+        <div class="profie-v-desc">
+            <h1>Chun Visal</h1>
+            <div class="color-perent">
+                <div>I want be full-stack developer</div>
+                <div class="position">
+                    <button><i class="fa-solid fa-location-dot"></i> Phom Penh</button>
+                </div>
+                <div class="profie-v-info">
+                    <div>
+                        <div>Student</div>
+                        <div>Royal Phnom Penh</div>
+                    </div>
+                    <div>
+                        <div>3</div>
+                        <div>Followers</div>
+                    </div>
+                    <div>
+                        <div>0</div>
+                        <div>Works</div>
+                    </div>
+                </div>
+                <div class="profie-v-social">
+                    <a href="https://www.facebook.com/share/LNuHNYZAzwS81kna/?mibextid=qi2Omg" class="facebook"><i
+                            class="fa-brands fa-facebook"></i></a>
+                    <a href="+855 888 093 42" class="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://t.me/Visaljrm" class="telegram"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="http://www.youtube.com/@visalsal6471" class="youtube"><i
+                            class="fa-brands fa-youtube"></i></a>
+                    <a href="https://x.com/VisalSal5?t=aLT7npTq-YkNV39wK98BJg&s=09" class="twitter"><i
+                            class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="profie-v-action">
+            <button id="send-message" class="blue">Send Message</button>
+            <button id="follow-me" class="orange">Follow Me</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('send-message').addEventListener('click', function () {
+            window.location.href = 'https://mail.google.com/mail/?view=cm&fs=1&to=vsal0882@gmail.com&su=Subject&body=Body%20text';
+        });
+
+        document.getElementById('follow-me').addEventListener('click', function () {
+            window.location.href = 'http://www.youtube.com/@visalsal6471';
+        });
+    </script>
+</body>
+
+</html>
