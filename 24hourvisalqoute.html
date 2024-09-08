@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24Quote Details-Visal</title>
+    <link rel="stylesheet" type="text/css" href="24hourvisalqoute.css">
+    <link rel="stylesheet" type="image/x-icon"
+        href="https://th.bing.com/th/id/OIP.atOtlpTfyUZ4HL_g1HEJtAAAAA?rs=1&pid=ImgDetMain">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100vh;
+            font-family: 'Roboto', sans-serif;
+            background-image: url("https://img.aelieve.com/wYiwMmE-0rsoMXKp/w:auto/h:auto/q:74/https://cdn.aelieve.com/c647f781-environmental.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            background-position: center center;
+            color: #000000;
+            left: 0;
+            right: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .novbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            color: deeppinker color;
+        }
+
+        .novbar h1 {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+            font-size: 30px;
+            color: #e8e8e8c3;
+            background-image: url("https://wallup.net/wp-content/uploads/2016/05/25/171377-pattern-wood-748x468.jpg");
+            border-radius: 50px;
+            border: 4px solid rgb(123, 0, 0);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            height: 100px;
+            width: 100px;
+        }
+
+        .novbar a {
+            color: #000000;
+            text-decoration: none;
+            padding: 0 10px;
+            font-weight: 700;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .novbar a:hover {
+            background-color: #0043a7c9;
+            border-radius: 4px;
+
+        }
+
+        .text-quote {
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            animation: flyInFromLeft 2.3s ease-out forwards;
+        }
+
+        .quotes-text {
+            flex: 1 1 calc(33.333% - 30px);
+            display: flex;
+            align-items: center;
+            background-color: #bdbdbd8d;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 10px 10px 15px 5px rgba(0, 0, 0, 0.5);
+            justify-content: space-between;
+            border: 3px solid rgba(0, 0, 0, 0.756);
+            transition: transform 0.3s, box-shadow 0.4s;
+            cursor: pointer;
+            transition: .5s;
+        }
+
+
+        @keyframes flyInFromLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-100%);
+                box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+                box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        .text-quote:hover> :not(:hover) {
+            filter: grayscale(0.1) blur(0.1s);
+        }
+
+        .quotes-text:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            scale: 1.03;
+        }
+
+
+        .quotes-text h3 {
+            margin-right: 15px;
+            font-size: 18px;
+            color: #000000;
+        }
+
+        .quotes-text i {
+            margin-right: 10px;
+            font-size: 24px;
+            color: #000000;
+        }
+
+        .quotes-text p {
+            margin: 0;
+            font-size: 16px;
+            color: #000000;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 80%;
+            max-height: 80%;
+            overflow-y: auto;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transform: scale(0.8);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #000;
+        }
+
+        strong {
+            color: blue;
+            text-decoration: none;
+
+        }
+
+        .footer {
+            background-color: #1f1e1eda;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .footer section {
+            flex: 1;
+            margin: 0 20px;
+            min-width: 200px;
+        }
+
+        .footer h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #0cbb00;
+        }
+
+        .footer p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .p-footer {
+            text-align: left;
+        }
+
+        .footer .social-icons {
+            width: 100%;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .footer .social-icons h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .footer .social-icons i {
+            margin: 0 10px;
+            font-size: 24px;
+            transition: color 0.3s ease, opacity 0.3s ease;
+        }
+
+        .fa-facebook {
+            color: #1877f2;
+        }
+
+        .fa-twitter {
+            color: #0483d2;
+        }
+
+        .fa-instagram {
+            color: #ce0228;
+        }
+
+        .fa-telegram {
+            color: dodgerblue;
+        }
+
+        .footer .social-icons i:hover {
+            opacity: 0.8;
+            color: rgb(122, 122, 122);
+        }
+
+        .footer .policies {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 10px;
+
+        }
+
+        .policies a {
+            text-decoration: none;
+        }
+
+        .footer .policies .footer-p {
+            margin: 5px 10px;
+            font-size: 12px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .footer .policies .footer-p:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .contact a {
+            text-decoration: none !important;
+            color: rgb(0, 0, 170);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="novbar">
+        <h1 class="h1-navbar">VISAL</h1>
+        <a href="https://t.me/Visaljrm">Message</a>
+        <a href="#">Service</a>
+        <a href="#">About</a>
+        <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=vsal0882@gmail.com&su=Subject&body=Body%20text">Context</a>
+        <a href="#"><i class="fa-solid fa-house"></i></a>
+    </div>
+    <h2>These is the best quotes we should know</h2>
+    <section class="text-quote">
+        <div class="quotes-text" data-details="detail1">
+            <h3>6:00 AM</h3>
+            <i class="fa-brands fa-think-peaks"></i>
+            <p>"The only limit to our realization of tomorrow is our doubts of today."</p>
+        </div>
+        <div class="quotes-text" data-details="detail2">
+            <h3>7:00 AM</h3>
+            <i class="fa-solid fa-hourglass-start"></i>
+            <p>"The best time to plant a tree was 20 years ago. The second-best time is now."</p>
+        </div>
+        <div class="quotes-text" data-details="detail3">
+            <h3>8:00 AM</h3>
+            <i class="fa-solid fa-life-ring"></i>
+            <p>"Life is what happens when you're busy making other plans."</p>
+        </div>
+        <div class="quotes-text" data-details="detail4">
+            <h3>9:00 AM</h3>
+            <i class="fa-solid fa-gauge"></i>
+            <p>"It does not matter how slowly you go as long as you do not stop."</p>
+        </div>
+        <div class="quotes-text" data-details="detail5">
+            <h3>10:00 AM</h3>
+            <i class="fa-solid fa-smile"></i>
+            <p>"Success is not the key to happiness. Happiness is the key to success. If you love what you are doing,
+                you will be successful."</p>
+        </div>
+        <div class="quotes-text" data-details="detail6">
+            <h3>11:00 AM</h3>
+            <i class="fa-solid fa-star"></i>
+            <p>"The best way to predict the future is to create it."</p>
+        </div>
+        <div class="quotes-text" data-details="detail7">
+            <h3>12:00 PM</h3>
+            <i class="fa-solid fa-heart"></i>
+            <p>"The only way to do great work is to love what you do."</p>
+        </div>
+        <div class="quotes-text" data-details="detail8">
+            <h3>1:00 PM</h3>
+            <i class="fa-solid fa-diamond"></i>
+            <p>"The only thing we have to fear is fear itself."</p>
+        </div>
+        <div class="quotes-text" data-details="detail9">
+            <h3>2:00 PM</h3>
+            <i class="fa-solid fa-lightbulb"></i>
+            <p>"What lies behind us and what lies before us are tiny matters compared to what lies within us."</p>
+        </div>
+        <div class="quotes-text" data-details="detail10">
+            <h3>3:00 PM</h3>
+            <i class="fa-solid fa-fire"></i>
+            <p>"Do not wait to strike till the iron is hot, but make it hot by striking."</p>
+        </div>
+        <div class="quotes-text" data-details="detail11">
+            <h3>4:00 PM</h3>
+            <i class="fa-solid fa-hourglass-half"></i>
+            <p>"It is never too late to try something new."</p>
+        </div>
+        <div class="quotes-text" data-details="detail12">
+            <h3>5:00 PM</h3>
+            <i class="fa-solid fa-sun"></i>
+            <p>"The future belongs to those who believe in the beauty of their dreams."</p>
+        </div>
+        <div class="quotes-text" data-details="detail13">
+            <h3>6:00 PM</h3>
+            <i class="fa-solid fa-smile-beam"></i>
+            <p>"Believe you can and you're halfway there."</p>
+        </div>
+        <div class="quotes-text" data-details="detail14">
+            <h3>7:00 PM</h3>
+            <i class="fa-solid fa-moon"></i>
+            <p>"It is never too late to try. never give up of dream"</p>
+        </div>
+        <div class="quotes-text" data-details="detail15">
+            <h3>8:00 PM</h3>
+            <i class="fa-solid fa-leaf"></i>
+            <p>"Success is not final, failure is not fatal: It is the courage to continue that counts."</p>
+        </div>
+        <div class="quotes-text" data-details="detail16">
+            <h3>9:00 PM</h3>
+            <i class="fa-solid fa-paperclip"></i>
+            <p>"The greatest accomplishment is not in never falling, but in rising again after a defeat."</p>
+        </div>
+        <div class="quotes-text" data-details="detail17">
+            <h3>10:00 PM</h3>
+            <i class="fa-solid fa-sunset"></i>
+            <i class="fa-solid fa-gift"></i>
+            <p>"Believe in yourself, for you are capable of great things."</p>
+        </div>
+        <div class="quotes-text" data-details="detail18">
+            <h3>11:00 PM</h3>
+            <i class="fa-solid fa-cloud"></i>
+            <p>"Believe you can and you're halfway there."</p>
+        </div>
+        <div class="quotes-text" data-details="detail19">
+            <h3>12:00 AM</h3>
+            <i class="fa-solid fa-cloud-sun"></i>
+            <p>"Success is not final, failure is not fatal: It is the courage to continue that counts."</p>
+        </div>
+        <div class="quotes-text" data-details="detail20">
+            <h3>1:00 AM</h3>
+            <i class="fa-solid fa-cloud-moon"></i>
+            <p>"Don’t watch the clock; do what it does. Keep going."</p>
+        </div>
+        <div class="quotes-text" data-details="detail21">
+            <h3>2:00 AM</h3>
+            <i class="fa-solid fa-cloud-sun-rain"></i>
+            <p>"Opportunities don't happen. You create them."</p>
+        </div>
+        <div class="quotes-text" data-details="detail22">
+            <h3>3:00 AM</h3>
+            <i class="fa-solid fa-cloud-showers-heavy"></i>
+            <p>"Success is not how high you have climbed, but how you make a positive difference to the world."</p>
+        </div>
+        <div class="quotes-text" data-details="detail23">
+            <h3>4:00 AM</h3>
+            <i class="fa-solid fa-fire"></i>
+            <p>"The only way to achieve the impossible is to believe it is possible."</p>
+        </div>
+        <div class="quotes-text" data-details="detail24">
+            <h3>5:00 AM</h3>
+            <i class="fa-solid fa-cloud-sun"></i>
+            <p>"Start where you are. Use what you have. Do what you can."</p>
+        </div>
+
+    </section>
+
+    <!-- Modal for quote details -->
+    <div id="modal-detail1" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 6:00 AM will appear here.</p>
+            <p>6:00 AM: <a
+                    href="https://www.bing.com/ck/a?!&&p=340dd7bd23ee212cJmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTQ1MA&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=franklin+d.+roosevelt+us+history&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvRnJhbmtsaW5fRC5fUm9vc2V2ZWx0&ntb=1">
+                    <em><strong>Franklin
+                            D. Roosevelt</strong></em></a> - "The only limit to our
+                realization of tomorrow
+                is our doubts of today."
+
+                Explanation: Roosevelt emphasizes that our doubts and fears are the primary obstacles to achieving our
+                potential. By overcoming these doubts, we can unlock our ability to achieve great things in the future.
+            </p>
+        </div>
+    </div>
+    <div id="modal-detail2" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 7:00 AM will appear here.</p>
+            <p>7:00 AM: <a
+                    href="https://www.bing.com/ck/a?!&&p=a6984cda86e8a833JmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTIzMQ&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=Chinese+Proverbs&u=a1aHR0cHM6Ly93d3cuY2hpbmFoaWdobGlnaHRzLmNvbS90cmF2ZWxndWlkZS9sZWFybmluZy1jaGluZXNlL2NoaW5lc2Utc2F5aW5ncy5odG0&ntb=1">
+                    <em><strong>Chinese Proverb</strong></em></a> - "The best time to plant a tree was 20 years ago. The
+                second-best time is now."
+
+                Explanation: This proverb underscores the importance of taking action sooner rather than later. While
+                past opportunities may be lost, the present is still a valuable time to start making positive changes.
+            </p>
+        </div>
+    </div>
+    <div id="modal-detail3" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 8:00 AM will appear here.</p>
+            <p>8:00 AM: <a
+                    href="https://www.bing.com/ck/a?!&&p=256a3d795845e599JmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTQ4Nw&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=John+Lennon&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvSm9obl9MZW5ub24&ntb=1">
+                    <em><strong>John Lennon</strong></em></a> - "Life is what happens when you're busy making other
+                plans."
+
+                Explanation: Lennon reflects on how life often unfolds unexpectedly while we are preoccupied with
+                planning for the future. It's a reminder to stay present and appreciate life’s spontaneous moments.</p>
+        </div>
+    </div>
+    <div id="modal-detail4" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 9:00 AM will appear here.</p>
+            <p>9:00 AM: <a
+                    href="https://www.bing.com/ck/a?!&&p=cdd716cee08c83a3JmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTQ4Nw&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=confucius&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQ29uZnVjaXVz&ntb=1">
+                    <em><strong>Confucius</strong></em></a> - "It does not matter how slowly you go as long as you do
+                not stop."
+
+                Explanation: Confucius encourages persistence and steady progress. The pace of progress is less
+                important than the commitment to continue moving forward despite challenges.</p>
+        </div>
+    </div>
+    <div id="modal-detail5" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 10:00 AM will appear here.</p>
+            <p>10:00 AM: <a
+                    href="https://www.bing.com/ck/a?!&&p=fdd3e3c41fc81dcaJmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTQ2OA&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=+Albert+Schweitzer&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQWxiZXJ0X1NjaHdlaXR6ZXI&ntb=1">
+                    <em><strong> Albert Schweitzer</strong></em></a> - "Success is not the key to happiness. Happiness
+                is the key to success. If
+                you love what you are doing, you will be successful."
+
+                Explanation: Schweitzer emphasizes that finding happiness in your work is the true measure of success.
+                When you are passionate about what you do, success will follow naturally.</p>
+        </div>
+    </div>
+    <div id="modal-detail6" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 11:00 AM will appear here.</p>
+            <p>11:00 AM: <a
+                    href="https://www.bing.com/ck/a?!&&p=07d8b5104d749850JmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTQ4MA&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=peter+drucker&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvUGV0ZXJfRHJ1Y2tlcg&ntb=1">
+                    <em><strong>Peter Drucker</strong></em></a> - "The best way to predict the future is to create it."
+
+                Explanation: Drucker advocates for proactive behavior in shaping one's own future. Instead of waiting
+                for things to happen, actively work to create the future you desire.</p>
+        </div>
+    </div>
+    <div id="modal-detail7" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 12:00 PM will appear here.</p>
+            <p>12:00 PM: <a
+                    href="https://www.bing.com/ck/a?!&&p=9d9e14aad0cc1908JmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTQ4Mw&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=Steve+Jobs&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvU3RldmVfSm9icw&ntb=1">
+                    <em><strong>Steve Jobs</strong></em></a> - "The only way to do great work is to love what you do."
+
+                Explanation: Jobs underscores the importance of passion in achieving excellence. Loving your work drives
+                you to do your best and produce outstanding results.</p>
+        </div>
+    </div>
+    <div id="modal-detail8" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 1:00 PM will appear here.</p>
+            <p>1:00 PM: <a
+                    href="https://www.bing.com/ck/a?!&&p=b0f7c074d44e7704JmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTQ3OA&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=Franklin+D.+Roosevelt&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvRnJhbmtsaW5fRC5fUm9vc2V2ZWx0&ntb=1">
+                    <em><strong>Franklin D. Roosevelt</strong>o</em></a> - "The only thing we have to fear is fear
+                itself."
+
+                Explanation: Roosevelt suggests that fear is the most significant obstacle to progress. Conquering fear
+                is crucial to overcoming challenges and achieving success.</p>
+        </div>
+    </div>
+    <div id="modal-detail9" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 2:00 PM will appear here.</p>
+            <p>2:00 PM: <a
+                    href="https://www.bing.com/ck/a?!&&p=091477497a934405JmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTQ1NA&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=Ralph+Waldo+Emerson+&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvUmFscGhfV2FsZG9fRW1lcnNvbg&ntb=1">
+                    <em><strong>Ralph Waldo Emerson </strong></em></a>- "What lies behind us and what lies before us are
+                tiny matters
+                compared to
+                what lies within us."
+                Explanation: Emerson emphasizes the importance of inner strength and character over past or future
+                circumstances. True power and potential come from within.</p>
+        </div>
+    </div>
+    <div id="modal-detail10" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 3:00 PM will appear here.</p>
+            <p>3:00 PM: <a
+                    href="https://www.bing.com/ck/a?!&&p=091477497a934405JmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTQ1NA&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=Ralph+Waldo+Emerson+&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvUmFscGhfV2FsZG9fRW1lcnNvbg&ntb=1">
+                    <em><strong> William B. Sprague</strong></em></a> - "Do not wait to strike till the iron is hot, but
+                make it hot by striking."
+
+                Explanation: Sprague advises taking initiative and creating opportunities rather than waiting for the
+                perfect moment. By taking action, you can generate your own success.</p>
+        </div>
+    </div>
+    <div id="modal-detail11" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 4:00 PM will appear here.</p>
+            <p>4:00 PM: <a
+                    href="https://www.bing.com/ck/a?!&&p=dee0229809e6456cJmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTIwMQ&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=Anonymous&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQW5vbnltb3VzXyhoYWNrZXJfZ3JvdXAp&ntb=1">
+                    <em><strong>Anonymous</strong></em></a> - "It is never too late to try something new."
+
+                Explanation: This quote encourages openness to change and new experiences at any stage in life. It’s a
+                reminder that growth and learning are always possible.</p>
+        </div>
+    </div>
+    <div id="modal-detail2" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 5:00 PM will appear here.</p>
+            <p>5:00 PM: <a
+                    href="https://www.bing.com/ck/a?!&&p=9f7a106b8f03e404JmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTQ4Mg&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=Eleanor+Roosevelt&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvRWxlYW5vcl9Sb29zZXZlbHQ&ntb=1">
+                    <em><strong>Eleanor Roosevelt</strong></em></a> - "The future belongs to those who believe in the
+                beauty of their dreams."
+
+                Explanation: Roosevelt highlights the importance of believing in and pursuing your dreams. Faith in your
+                dreams is key to shaping a successful future.</p>
+        </div>
+    </div>
+    <div id="modal-detail13" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 6:00 AM will appear here.</p>
+            <p>6:00 PM: <a
+                    href="https://www.bing.com/ck/a?!&&p=8483bd3fbc99163dJmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTQ3OQ&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=Theodore+Roosevelt&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvVGhlb2RvcmVfUm9vc2V2ZWx0&ntb=1">
+                    <em><strong>Theodore Roosevelt</strong></em></a> - "Believe you can and you're halfway there."
+
+                Explanation: Roosevelt emphasizes the power of self-belief. Confidence in your abilities is a
+                significant part of achieving success.</p>
+        </div>
+    </div>
+    <div id="modal-detail14" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 7:00 AM will appear here.</p>
+            <p>7:00 PM: <a
+                    href="https://www.bing.com/ck/a?!&&p=dee0229809e6456cJmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTIwMQ&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=Anonymous&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQW5vbnltb3VzXyhoYWNrZXJfZ3JvdXAp&ntb=1">
+                    <em><strong>Anonymous</strong></em></a> - "It is never too late to try. Never give up on your
+                dreams."
+
+                Explanation: This quote encourages persistence and resilience. No matter the circumstances, it’s
+                important to keep striving towards your dreams.</p>
+        </div>
+    </div>
+    <div id="modal-detail15" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 8:00 AM will appear here.</p>
+            <p>8:00 PM: <a
+                    href="https://www.bing.com/ck/a?!&&p=1998b383e59dac0bJmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTQ2MQ&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=Winston+Churchill+&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvV2luc3Rvbl9DaHVyY2hpbGw&ntb=1">
+                    <em><strong>Winston Churchill </strong></em></a> - "Success is not final, failure is not fatal: It
+                is the courage to continue
+                that counts."
+
+                Explanation: Churchill underscores the importance of perseverance. Both success and failure are
+                temporary, but ongoing courage and determination are what truly matter.</p>
+        </div>
+    </div>
+    <div id="modal-detail16" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 9:00 AM will appear here.</p>
+            <p>9:00 PM: <a
+                    href="https://www.bing.com/ck/a?!&&p=2a9f9c5252f6768aJmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTQ5MQ&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=Nelson+Mandela&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvTmVsc29uX01hbmRlbGE&ntb=1">
+                    <em><strong>Nelson Mandela</strong></em></a> - "The greatest accomplishment is not in never falling,
+                but in rising again after
+                a defeat."
+
+                Explanation: Mandela highlights resilience as the ultimate measure of success. The ability to recover
+                from setbacks is a key component of true achievement.</p>
+        </div>
+    </div>
+    <div id="modal-detail17" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 10:00 AM will appear here.</p>
+            <p>10:00 PM: <a
+                    href="https://www.bing.com/ck/a?!&&p=f13b8f9111d0d767JmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTQzNw&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=Christian+D.+Larson&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQ2hyaXN0aWFuX0QuX0xhcnNvbg&ntb=1">
+                    <em><strong>Christian D. Larson</strong></em></a> - "Believe in yourself, for you are capable of
+                great things."
+
+                Explanation: Larson stresses the importance of self-belief. Trusting in your own abilities is essential
+                to realizing your full potential.</p>
+        </div>
+    </div>
+    <div id="modal-detail18" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 11:00 AM will appear here.</p>
+            <p>11:00 PM: <a
+                    href="https://www.bing.com/ck/a?!&&p=770a7f1bf72c58c8JmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTQ3OA&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=Theodore+Roosevelt&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvVGhlb2RvcmVfUm9vc2V2ZWx0&ntb=1">
+                    <em><strong>Theodore Roosevelt</strong></em></a> - "Believe you can and you're halfway there."
+
+                Explanation: As with the earlier quote from Roosevelt, this emphasizes that self-belief is crucial to
+                achieving success. Confidence is a major step towards reaching your goals.</p>
+        </div>
+    </div>
+    <div id="modal-detail19" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 12:00 AM will appear here.</p>
+            <p>12:00 AM: <a
+                    href="https://www.bing.com/ck/a?!&&p=eb4c6c6fe8de0689JmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTQ4NA&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=Winston+Churchill&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvV2luc3Rvbl9DaHVyY2hpbGw&ntb=1">
+                    <em><strong>Winston Churchill</strong></em></a> - "Success is not final, failure is not fatal: It is
+                the courage to continue
+                that counts."
+
+                Explanation: Churchill’s repeated message about perseverance reinforces that success and failure are
+                fleeting, but the determination to keep going is what truly counts.</p>
+        </div>
+    </div>
+    <div id="modal-detail20" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 1:00 AM will appear here.</p>
+            <p>1:00 AM: <a
+                    href="https://www.bing.com/ck/a?!&&p=dee0229809e6456cJmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTIwMQ&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=Anonymous&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQW5vbnltb3VzXyhoYWNrZXJfZ3JvdXAp&ntb=1">
+                    <em><strong>Anonymous</strong></em></a> - "Don’t watch the clock; do what it does. Keep going."
+
+                Explanation: This quote encourages staying focused on your goals and keeping up the effort, rather than
+                being preoccupied with time.</p>
+        </div>
+    </div>
+    <div id="modal-detail21" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 2:00 AM will appear here.</p>
+            <p>2:00 AM: <a
+                    href="https://www.bing.com/ck/a?!&&p=dee0229809e6456cJmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTIwMQ&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=Anonymous&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQW5vbnltb3VzXyhoYWNrZXJfZ3JvdXAp&ntb=1">
+                    <em><strong>Anonymous</strong></em></a> - "Opportunities don't happen. You create them."
+
+                Explanation: This quote suggests that rather than waiting for opportunities to come, you should actively
+                work to create and seize them.</p>
+        </div>
+    </div>
+    <div id="modal-detail22" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 3:00 AM will appear here.</p>
+            <p>3:00 AM: <a
+                    href="https://www.bing.com/ck/a?!&&p=dee0229809e6456cJmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTIwMQ&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=Anonymous&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQW5vbnltb3VzXyhoYWNrZXJfZ3JvdXAp&ntb=1">
+                    <em><strong>Anonymous</strong></em>
+                </a> - "Success is not how high you have climbed, but how you make a positive difference to
+                the world."
+
+                Explanation: It emphasizes that true success is measured by the impact you have on others and the
+                positive changes you bring about, rather than personal achievements alone.</p>
+        </div>
+    </div>
+    <div id="modal-detail23" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 4:00 AM will appear here.</p>
+            <p>4:00 AM: <a
+                    href="https://www.bing.com/ck/a?!&&p=dee0229809e6456cJmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTIwMQ&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=Anonymous&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQW5vbnltb3VzXyhoYWNrZXJfZ3JvdXAp&ntb=1">
+                    <em><strong>Anonymous</strong></em></a> - "The only way to achieve the impossible is to believe it
+                is possible."
+
+                Explanation: Believing in the possibility of achieving something is the first step toward making it
+                happen. This quote emphasizes the power of belief in overcoming challenges.
+            </p>
+        </div>
+    </div>
+    <div id="modal-detail24" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Quote Details</h2>
+            <p>Details about the quote for 5:00 AM will appear here.</p>
+            <p>5:00 AM: <a
+                    href="https://www.bing.com/ck/a?!&&p=dee0229809e6456cJmltdHM9MTcyMzg1MjgwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTIwMQ&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=Anonymous&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQW5vbnltb3VzXyhoYWNrZXJfZ3JvdXAp&ntb=1">
+                    <em><strong>Anonymous</strong></em></a> - "Start where you are. Use what you have. Do what you can."
+
+                Explanation: This quote encourages taking action with the resources available to you, rather than
+                waiting for ideal conditions. It's a reminder that progress begins with making the most of what you
+                have.</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <section class="about">
+            <h3 class="h2-footer">About the 24 Quotes</h3>
+            <p class="p-footer">These quotes are carefully selected to inspire and motivate...</p>
+            <p class="p-footer">Drawing from a wide array of sources, including renowned philosophers, leaders, and
+                thinkers, these
+                quotes encapsulate timeless truths that speak to the heart and soul. Whether you are facing a difficult
+                decision, seeking motivation to pursue your goals, or simply in need of a moment of reflection, these
+                quotes are here to support you.</p>
+        </section>
+
+        <section class="categories">
+            <h3>Categories</h3>
+            <p>Motivation</p>
+            <p>Resilience</p>
+            <p>Positivity</p>
+            <p>Success</p>
+            <p>Growth</p>
+        </section>
+
+        <section class="contact">
+            <h3>Contact Us</h3>
+            <p>Email: <a href="mailto:visalsla3gmail@gmail.com">@visalsla3gmail.com</a></p>
+            <p>Phone: +855 888 093 342</p>
+            <p>Address: Tuek Thla II, Phom Penh</p>
+        </section>
+
+        <div class="social-icons">
+            <h3>Follow Us</h3>
+            <a href="https://www.facebook.com/share/LNuHNYZAzwS81kna/?mibextid=qi2Omg"><i
+                    class="fa-brands fa-facebook"></i></a>
+            <a href="https://x.com/VisalSal5?t=aLT7npTq-YkNV39wK98BJg&s=09"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://www.instagram.com/visalsal9"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://t.me/Visaljrm"><i class="fa-brands fa-telegram"></i></a>
+
+            <div class="policies">
+                <a
+                    href="https://www.bing.com/ck/a?!&&p=a47c51fdd128715eJmltdHM9MTcyMzkzOTIwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTE5NQ&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=term+of+service&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvVGVybXNfb2Zfc2VydmljZQ&ntb=1">
+                    <p class="footer-p">| Terms of Service |</p>
+                </a>
+                <a
+                    href="https://www.bing.com/ck/a?!&&p=82cfc867a5c3934dJmltdHM9MTcyMzkzOTIwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTIwMg&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=pravity+policy&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvUHJpdml0eV9vZl9jb250cmFjdA&ntb=1">
+                    <p class="footer-p">| Privacy Policy |</p>
+                </a>
+                <a
+                    href="https://www.bing.com/ck/a?!&&p=07cfb83109b3975cJmltdHM9MTcyMzkzOTIwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTIxOQ&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=refund+policy+of+website&u=a1aHR0cHM6Ly93d3cud2Vic2l0ZXBvbGljaWVzLmNvbS9ibG9nL3NhbXBsZS1yZXR1cm4tcmVmdW5kLXBvbGljeS10ZW1wbGF0ZQ&ntb=1">
+                    <p class="footer-p">| Refund Policy |</p>
+                </a>
+                <a
+                    href="https://www.bing.com/ck/a?!&&p=b63bc73944445b4fJmltdHM9MTcyMzkzOTIwMCZpZ3VpZD0zZjdkZDZhMy02ZjMyLTZlMDktM2E0Ny1jMjcwNmVmNTZmMzUmaW5zaWQ9NTIwMQ&ptn=3&ver=2&hsh=3&fclid=3f7dd6a3-6f32-6e09-3a47-c2706ef56f35&psq=Accessibility+Policy+of+website&u=a1aHR0cHM6Ly93d3cudzMub3JnL1dBSS9wb2xpY2llcy8&ntb=1">
+                    <p class="footer-p">| Accessibility Policy |</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <script>
+        document.querySelectorAll('.quotes-text').forEach(function (item) {
+            item.addEventListener('click', function () {
+                const detailId = item.getAttribute('data-details');
+                const modal = document.getElementById('modal-' + detailId);
+                if (modal) {
+                    modal.classList.add('show');
+                }
+            });
+        });
+
+        document.querySelectorAll('.modal-close').forEach(function (item) {
+            item.addEventListener('click', function () {
+                const modal = item.closest('.modal');
+                if (modal) {
+                    modal.classList.remove('show');
+                }
+            });
+        });
+
+        window.addEventListener('click', function (e) {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('show');
+            }
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        function handleScroll() {
+            const scrollTop = window.scrollY;
+            const textQuote = document.querySelector('.text-quote');
+            if (textQuote && scrollTop > textQuote.offsetTop - window.innerHeight / 1.5) {
+                textQuote.classList.add('visible');
+            }
+        }
+
+        document.querySelectorAll('.fly-in-left').forEach((element, index) => {
+            element.style.animationDelay = `${index * 0.3}s`;
+        });
+
+        window.addEventListener('scroll', handleScroll);
+
+    </script>
+</body>
+
+</html>
